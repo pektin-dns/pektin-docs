@@ -55,9 +55,9 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
             [
                 "@docusaurus/plugin-content-docs",
                 {
-                    id: "api",
-                    path: "docs/api",
-                    routeBasePath: "api",
+                    id: "api-server",
+                    path: "docs/api-server",
+                    routeBasePath: "api-server",
                     sidebarPath: require.resolve("./sidebars.js")
                 }
             ],
@@ -129,7 +129,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
                             label: "Helm"
                         },
                         {
-                            to: "#",
+                            to: "#disabled",
                             position: "left",
                             label: "|"
                         },
@@ -139,7 +139,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
                             label: "Server"
                         },
                         {
-                            to: "api/intro",
+                            to: "api-server/intro",
                             position: "left",
                             label: "API"
                         },
@@ -224,7 +224,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
                             ]
                         }
                     ],
-                    copyright: `Copyright © ${new Date().getFullYear()} The Pektin Authors. Built with Docusaurus.`
+                    copyright: `Copyright ${new Date().getFullYear()} Paul, Max and the Pektin Contributors. Built with Docusaurus.`
                 },
                 prism: {
                     theme: lightCodeTheme,

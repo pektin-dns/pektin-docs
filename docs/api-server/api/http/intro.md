@@ -1,0 +1,15 @@
+---
+sidebar_position: 1
+---
+
+# Getting Started
+
+The Pektin API Server exposes the most basic functions to mutate the Redis database via an HTTP endpoint.
+
+Five methods are supported: get, set, search, delete and rotate
+
+-   [get](./methods#get)
+-   [set](./methods#set)
+-   [search](./methods#search)
+-   [delete](./methods#delete)
+-   [rotate](./methods#rotate)

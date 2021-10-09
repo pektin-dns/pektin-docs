@@ -1,0 +1,121 @@
+---
+sidebar_position: 2
+---
+
+# Auth
+
+## Client libraries
+
+You might not need to go through the manual process of obtaining an API key from vault.
+Look [here](../client-libraries/intro) to see if there's a client library for your language.
+
+## Manually
+
+Like always, the first part of working with any API is getting a token to authenticate with it. <br/>
+As Pektin's security is built around Vault, you have to obtain the token by asking Vault for it.<br/>
+Pektin API differentiates between two different kinds of tokens.
+
+-   A basic token that can perform all functions except for rotating DNS keys.
+
+-   A rotation token that can perform all functions.
+
+Using a username and password is the standard method for obtaining the token, but you can use any number of the other [Vault auth mechanisms](https://www.vaultproject.io/docs/auth). This guide will only refer to using the [userpass method](https://www.vaultproject.io/docs/auth/userpass) but may be applied to similar methods like [approles](https://www.vaultproject.io/docs/auth/approle).
+
+### 1. Get the Vault token
+
+In the first request we obtain a Vault token by using the password and username.
+
+Normaly you should NEVER store your credentials in a code file but use something like a .env file. Have a look at [dotenv](https://www.npmjs.com/package/dotenv) for Node.js.
+
+```js
+// in a ES module with top level await
+const vaultCredentials = {
+    username: "ui-2A7BppCDHrbTGQ",
+    password: "WDLYYfWQ-Py3yMREm5tvoJBWzQSRWbSZsaEMr8cezQ_Z7Zv26R...",
+    vaultEndpoint: "https://vault.pektin.example.com"
+};
+
+// send a http POST request to vault
+const vaultTokenRes = await fetch(
+    `${vaultCredentials.vaultEndpoint}/v1/auth/userpass/login/${vaultCredentials.username}`,
+    {
+        method: "POST",
+        body: JSON.stringify({
+            password: vaultCredentials.password
+        })
+    }
+);
+
+// parse the json from the response body
+const vaultTokenJson = await vaultTokenRes.json();
+const token = json.auth.client_token;
+```
+
+### 2. Get the Pektin config
+
+Instead of statically coding the Pektin API endpoint and other informations about your deployment directly into your app you can obtain the Pektin config by asking Vault for it.
+
+```js
+// in a ES module with top level await
+
+// send a http GET request to vault
+const pektinConfigRes = await fetch(
+    `${vaultCredentials.vaultEndpoint}/v1/pektin-kv/data/pektin-config`,
+    {
+        headers: {
+            "X-Vault-Token": token
+        }
+    }
+);
+
+// parse the json from the response body
+const pektinConfigJson = await pektinConfigRes.json();
+const pektinConfig = pektinConfigJson.data.data;
+```
+
+### 3. Get the Pektin API token
+
+Depending on the Pektin API key rotation time it might roll arround the token every few hours.
+Keep that in mind when deciding whether you want to query it with every API request or less often.
+
+```js
+// in a ES module with top level await
+
+// send a http GET request to vault
+const pektinApiTokenRes = await fetch(
+    `${vaultCredentials.vaultEndpoint}/v1/pektin-kv/data/pektin-config`,
+    {
+        headers: {
+            "X-Vault-Token": token
+        }
+    }
+);
+
+// parse the json from the response body
+const pektinApiTokenJson = await pektinApiTokenRes.json();
+const pektinApiToken = pektinApiTokenJson.data.data;
+```
+
+### 4. Use it
+
+Now that we have token and config we can call the API to search Redis.
+
+```js
+// in a ES module with top level await
+
+// construct the api endpoint for the request
+const endpoint = "https://" + pektinConfig.apiSubDomain + "." + pektinConfig.domain;
+
+// request to get all entries ending in .:SOA
+const res = await fetch(endpoint + "/search", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+        token: pektinApiToken,
+        glob: "*.:SOA"
+    })
+}).catch(e => {
+    console.log(e);
+});
+console.log(res);
+```
