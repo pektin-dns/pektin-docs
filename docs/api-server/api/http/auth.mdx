@@ -4,12 +4,10 @@ sidebar_position: 2
 
 # Auth
 
-## Client libraries
-
+:::tip
 You might not need to go through the manual process of obtaining an API key from vault.
 Look [here](../client-libraries/intro) to see if there's a client library for your language.
-
-## Manually
+:::
 
 Like always, the first part of working with any API is getting a token to authenticate with it. <br/>
 As Pektin's security is built around Vault, you have to obtain the token by asking Vault for it.<br/>
@@ -21,11 +19,15 @@ Pektin API differentiates between two different kinds of tokens.
 
 Using a username and password is the standard method for obtaining the token, but you can use any number of the other [Vault auth mechanisms](https://www.vaultproject.io/docs/auth). This guide will only refer to using the [userpass method](https://www.vaultproject.io/docs/auth/userpass) but may be applied to similar methods like [approles](https://www.vaultproject.io/docs/auth/approle).
 
-### 1. Get the Vault token
+## 1. Get the Vault token
 
 In the first request we obtain a Vault token by using the password and username.
 
+:::caution
+
 Normaly you should NEVER store your credentials in a code file but use something like a .env file. Have a look at [dotenv](https://www.npmjs.com/package/dotenv) for Node.js.
+
+:::
 
 ```js
 // in a ES module with top level await
@@ -51,7 +53,7 @@ const vaultTokenJson = await vaultTokenRes.json();
 const token = json.auth.client_token;
 ```
 
-### 2. Get the Pektin config
+## 2. Get the Pektin config
 
 Instead of statically coding the Pektin API endpoint and other informations about your deployment directly into your app you can obtain the Pektin config by asking Vault for it.
 
@@ -73,7 +75,7 @@ const pektinConfigJson = await pektinConfigRes.json();
 const pektinConfig = pektinConfigJson.data.data;
 ```
 
-### 3. Get the Pektin API token
+## 3. Get the Pektin API token
 
 Depending on the Pektin API key rotation time it might roll arround the token every few hours.
 Keep that in mind when deciding whether you want to query it with every API request or less often.
@@ -96,7 +98,7 @@ const pektinApiTokenJson = await pektinApiTokenRes.json();
 const pektinApiToken = pektinApiTokenJson.data.data;
 ```
 
-### 4. Use it
+## 4. Use it
 
 Now that we have token and config we can call the API to search Redis.
 

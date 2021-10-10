@@ -189,15 +189,6 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
                     style: "dark",
                     links: [
                         {
-                            title: "Legal",
-                            items: [
-                                {
-                                    label: "Tutorial",
-                                    to: "/docs/intro"
-                                }
-                            ]
-                        },
-                        {
                             title: "Community",
                             items: [
                                 {
