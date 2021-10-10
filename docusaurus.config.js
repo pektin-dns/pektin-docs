@@ -167,21 +167,6 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
                             to: "redis/intro",
                             position: "left",
                             label: "Redis"
-                        },
-                        {
-                            href: "https://git.y.gy/pektin",
-                            label: "git.y.gy",
-                            position: "right"
-                        },
-                        {
-                            href: "https://gitlab.com/pektin",
-                            label: "Gitlab",
-                            position: "right"
-                        },
-                        {
-                            href: "https://github.com/pektin-dns",
-                            label: "GitHub",
-                            position: "right"
                         }
                     ]
                 },
@@ -189,28 +174,28 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
                     style: "dark",
                     links: [
                         {
-                            title: "Community",
+                            title: "Repos",
                             items: [
                                 {
-                                    label: "Stack Overflow",
-                                    href: "https://stackoverflow.com/questions/tagged/docusaurus"
+                                    href: "https://git.y.gy/pektin",
+                                    label: "git.y.gy"
                                 },
                                 {
-                                    label: "Discord",
-                                    href: "https://discordapp.com/invite/docusaurus"
+                                    href: "https://gitlab.com/pektin",
+                                    label: "Gitlab"
                                 },
                                 {
-                                    label: "Twitter",
-                                    href: "https://twitter.com/docusaurus"
+                                    href: "https://github.com/pektin-dns",
+                                    label: "GitHub"
                                 }
                             ]
                         },
                         {
-                            title: "More",
+                            title: "Images",
                             items: [
                                 {
-                                    label: "GitHub",
-                                    href: "https://github.com/facebook/docusaurus"
+                                    href: "https://hub.docker.com/repositories",
+                                    label: "dockerHub"
                                 }
                             ]
                         }
