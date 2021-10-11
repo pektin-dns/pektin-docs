@@ -24,9 +24,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
                         sidebarPath: require.resolve("./sidebars.js"),
                         routeBasePath: "compose",
                         path: "docs/compose",
-                        editUrl: "https://github.com/facebook/docusaurus/edit/main/website/"
+                        editUrl: "https://github.com/pektin-dns/pektin-docs/edit/main/"
                     },
-
                     theme: {
                         customCss: require.resolve("./src/css/custom.css")
                     }
@@ -119,12 +118,12 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
                     },
                     items: [
                         {
-                            to: "compose/intro",
+                            to: "compose/overview",
                             position: "left",
                             label: "Compose"
                         },
                         {
-                            to: "helm/intro",
+                            to: "helm/overview",
                             position: "left",
                             label: "Helm"
                         },
@@ -134,37 +133,37 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
                             label: "|"
                         },
                         {
-                            to: "server/intro",
+                            to: "server/overview",
                             position: "left",
                             label: "Server"
                         },
                         {
-                            to: "api-server/intro",
+                            to: "api-server/overview",
                             position: "left",
                             label: "API"
                         },
                         {
-                            to: "ui/intro",
+                            to: "ui/overview",
                             position: "left",
                             label: "UI"
                         },
                         {
-                            to: "certbot/intro",
+                            to: "certbot/overview",
                             position: "left",
                             label: "Certbot"
                         },
                         {
-                            to: "rotate/intro",
+                            to: "rotate/overview",
                             position: "left",
                             label: "Rotate"
                         },
                         {
-                            to: "vault/intro",
+                            to: "vault/overview",
                             position: "left",
                             label: "Vault"
                         },
                         {
-                            to: "redis/intro",
+                            to: "redis/overview",
                             position: "left",
                             label: "Redis"
                         }
@@ -182,7 +181,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
                                 },
                                 {
                                     href: "https://gitlab.com/pektin",
-                                    label: "Gitlab"
+                                    label: "GitLab"
                                 },
                                 {
                                     href: "https://github.com/pektin-dns",
@@ -195,7 +194,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
                             items: [
                                 {
                                     href: "https://hub.docker.com/repositories",
-                                    label: "dockerHub"
+                                    label: "Docker Hub"
                                 }
                             ]
                         }
