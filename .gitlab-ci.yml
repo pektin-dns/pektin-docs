@@ -41,7 +41,7 @@ github-pages:
         - cp -r build/ /repo/docs/
         - cd /repo/
         - git init
-        - git add build/
+        - git add docs/
         - git commit -m "🐑 build docs"
         - git remote add origin https://${USERNAME}:${GITHUB_TOKEN}@github.com/pektin-dns/docs.git
         - git push --set-upstream origin HEAD:refs/heads/main -f || true
