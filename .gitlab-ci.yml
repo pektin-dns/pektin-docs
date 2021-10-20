@@ -40,7 +40,7 @@ github-pages:
         - yarn build
         - S=<head>
         - R=<head>$(cat deployment/csp.html)
-        - sed -i "s|$S|$R|g" ./build/index.html
+        - sed -i -e "s|${S}|${R}|g" ./build/index.html
         - cat deployment/README_GITHUB.md > build/README.md
         - cp -r build/ /
         - cd /build/
