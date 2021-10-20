@@ -1,0 +1,8 @@
+image: alpine
+pages:
+    script:
+        - mkdir public/
+        - cp ./ public/
+    artifacts:
+        paths:
+            - public

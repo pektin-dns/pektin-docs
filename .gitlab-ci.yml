@@ -2,6 +2,7 @@ image: node:latest
 
 stages:
     - mirror
+    - gitlab-pages
     - github-pages
     - docker-build
 
@@ -28,8 +29,8 @@ mirror:
         - curl --request DELETE "https://gitlab.com/api/v4/projects/${CI_PROJECT_NAMESPACE}%2F${CI_PROJECT_NAME}/protected_branches/main?private_token=${GITLAB_TOKEN}" ; echo
         - git push --set-upstream origin HEAD:refs/heads/main -f
 
-github-pages:
-    stage: github-pages
+pages:
+    stage: pages
     script:
         #github
         - USERNAME=pektin-dolly
@@ -37,13 +38,32 @@ github-pages:
         - git config --global user.name "runner"
         - yarn
         - yarn build
-        - cat README_GITHUB.md > build/README.md
+        - cat deployment/README_GITHUB.md > build/README.md
         - cp -r build/ /
         - cd /build/
         - git init
         - git add -A
         - git commit -m "🐑 build docs"
         - git remote add origin https://${USERNAME}:${GITHUB_TOKEN}@github.com/pektin-dns/docs.git
+        - git push --set-upstream origin HEAD:refs/heads/main -f || true
+
+gitlab-pages:
+    stage: gitlab-pages
+    script:
+        #github
+        - USERNAME=pektin-dolly
+        - git config --global user.email "runner@${CI_SERVER_HOST}"
+        - git config --global user.name "runner"
+        - yarn
+        - yarn build
+        - cat deployment/README_GITLAB.md > build/README.md
+        - cat deployment/.gitlab-ci.yml > build/.gitlab-ci.yml
+        - cp -r build/ /
+        - cd /build/
+        - git init
+        - git add -A
+        - git commit -m "🐑 build docs"
+        - git remote add origin https://${USERNAME}:${GITLAB_TOKEN}@gitlab.com/docs.git
         - git push --set-upstream origin HEAD:refs/heads/main -f || true
 
 docker-build:
