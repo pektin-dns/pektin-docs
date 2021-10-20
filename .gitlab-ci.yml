@@ -57,7 +57,7 @@ gitlab-pages:
         - yarn
         - yarn build
         - cat deployment/README_GITLAB.md > build/README.md
-        - cat deployment/.gitlab-ci.yml > build/.gitlab-ci.yml
+        - cat deployment/.gitlab.com-ci.yml > build/.gitlab-ci.yml
         - cp -r build/ /
         - cd /build/
         - git init

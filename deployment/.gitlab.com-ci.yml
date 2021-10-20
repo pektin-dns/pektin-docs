@@ -1,4 +1,6 @@
 image: alpine
+stages:
+    - pages
 pages:
     script:
         - mkdir public/
