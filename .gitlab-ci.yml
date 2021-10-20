@@ -38,7 +38,7 @@ github-pages:
         - yarn
         - yarn build
         - mkdir /repo
-        - cp -r build/ /repo/
+        - cp -r build/ /repo
         - cd /repo/
         - git init
         - git add -A
