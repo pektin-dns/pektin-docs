@@ -38,8 +38,8 @@ github-pages:
         - sed -i "s|$MAIN_URL|$URL|g" ./docusaurus.config.js
         - yarn
         - yarn build
-        - S=<head>
-        - R=<head>$(cat deployment/csp.html)
+        - S="<head>"
+        - R="<head>"$(cat deployment/csp.html)
         - sed -i -e "s|${S}|${R}|g" ./build/index.html
         - cat deployment/README_GITHUB.md > build/README.md
         - cp -r build/ /
