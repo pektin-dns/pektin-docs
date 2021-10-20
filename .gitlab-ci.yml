@@ -38,10 +38,10 @@ github-pages:
         - yarn
         - yarn build
         - mkdir /repo
-        - cp -r build/ /repo/docs/
+        - cp -r build/ /repo/
         - cd /repo/
         - git init
-        - git add docs/
+        - git add -A
         - git commit -m "🐑 build docs"
         - git remote add origin https://${USERNAME}:${GITHUB_TOKEN}@github.com/pektin-dns/docs.git
         - git push --set-upstream origin HEAD:refs/heads/main -f || true
