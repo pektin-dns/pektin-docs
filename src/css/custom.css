@@ -31,3 +31,9 @@ a[href="#disabled"] {
     user-select: none;
     pointer-events: none;
 }
+
+@media (max-width: 700px) {
+    a[href="#disabled"] {
+        writing-mode: vertical-lr;
+    }
+}
