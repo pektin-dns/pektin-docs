@@ -7,8 +7,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
     module.exports = {
         title: "Pektin",
         tagline: "is a strongly opinionated DNS server",
-        url: "https://your-docusaurus-test-site.com",
-        baseUrl: "/",
+        url: "https://pektin-dns.github.io/",
+        baseUrl: "docs/",
         onBrokenLinks: "throw",
         onBrokenMarkdownLinks: "warn",
         favicon: "img/favicon.ico",
