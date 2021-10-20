@@ -29,8 +29,8 @@ mirror:
         - curl --request DELETE "https://gitlab.com/api/v4/projects/${CI_PROJECT_NAMESPACE}%2F${CI_PROJECT_NAME}/protected_branches/main?private_token=${GITLAB_TOKEN}" ; echo
         - git push --set-upstream origin HEAD:refs/heads/main -f
 
-pages:
-    stage: pages
+github-pages:
+    stage: github-pages
     script:
         #github
         - USERNAME=pektin-dolly
