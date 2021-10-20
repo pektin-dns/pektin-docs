@@ -14,6 +14,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
         favicon: "img/favicon.ico",
         organizationName: "Pektin",
         projectName: "Pektin",
+        trailingSlash: false,
 
         presets: [
             [
