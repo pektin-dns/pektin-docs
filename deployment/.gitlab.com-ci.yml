@@ -2,6 +2,7 @@ image: alpine
 stages:
     - pages
 pages:
+    stage: pages
     script:
         - mkdir public/
         - cp ./ public/
