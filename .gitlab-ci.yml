@@ -38,8 +38,8 @@ github-pages:
         - yarn
         - yarn build
         - mkdir /repo
-        - cp -r build/ /repo
-        - cd /repo/
+        - cp -r build/ /
+        - cd /build/
         - git init
         - git add -A
         - git commit -m "🐑 build docs"
