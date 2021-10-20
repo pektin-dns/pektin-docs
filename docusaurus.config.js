@@ -9,6 +9,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
         tagline: "is a strongly opinionated DNS server",
         url: "https://pektin.y.gy.",
         baseUrl: "/docs/",
+        baseUrlIssueBanner:false,
         onBrokenLinks: "throw",
         onBrokenMarkdownLinks: "warn",
         favicon: "img/favicon.ico",
