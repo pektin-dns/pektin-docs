@@ -35,6 +35,7 @@ github-pages:
         - USERNAME=pektin-dolly
         - git config --global user.email "runner@${CI_SERVER_HOST}"
         - git config --global user.name "runner"
+        - sed -i "s|<head>|<head>$(cat deployment/csp.html)|g"
         - sed -i "s|$MAIN_URL|$URL|g" ./docusaurus.config.js
         - yarn
         - yarn build
@@ -55,6 +56,7 @@ gitlab-pages:
         - USERNAME=pektin-dolly
         - git config --global user.email "runner@${CI_SERVER_HOST}"
         - git config --global user.name "runner"
+        - sed -i "s|<head>|<head>$(cat deployment/csp.html)|g"
         - sed -i "s|$MAIN_URL|$URL|g" ./docusaurus.config.js
         - yarn
         - yarn build

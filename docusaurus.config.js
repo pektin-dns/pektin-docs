@@ -191,6 +191,19 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
                             ]
                         },
                         {
+                            title: "Docs",
+                            items: [
+                                {
+                                    href: "https://pektin.gitlab.io/docs/",
+                                    label: "GitLab"
+                                },
+                                {
+                                    href: "https://pektin-dns.github.io/docs/",
+                                    label: "GitHub"
+                                }
+                            ]
+                        },
+                        {
                             title: "Images",
                             items: [
                                 {
