@@ -2,8 +2,8 @@ image: node:latest
 
 stages:
     - mirror
-    - docker-build
     - github-pages
+    - docker-build
 
 mirror:
     stage: mirror
@@ -35,13 +35,15 @@ github-pages:
         - USERNAME=pektin-dolly
         - git config --global user.email "runner@${CI_SERVER_HOST}"
         - git config --global user.name "runner"
-        - git fetch --unshallow origin || true
-        - git remote remove origin
-        - git remote add origin https://${USERNAME}:${GITHUB_TOKEN}@github.com/pektin-dns/docs.git
         - yarn
         - yarn build
+        - mkdir ../repo/
+        - cp build/ ../repo/
+        - cd ../repo/
+        - git init
         - git add build/
         - git commit -m "🐑 build docs"
+        - git remote add origin https://${USERNAME}:${GITHUB_TOKEN}@github.com/pektin-dns/docs.git
         - git push --set-upstream origin HEAD:refs/heads/main -f || true
 
 docker-build:
