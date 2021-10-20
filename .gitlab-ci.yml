@@ -56,10 +56,10 @@ gitlab-pages:
         - USERNAME=pektin-dolly
         - git config --global user.email "runner@${CI_SERVER_HOST}"
         - git config --global user.name "runner"
-        - sed -i "s|<head>|<head>$(cat deployment/csp.html)|g"
         - sed -i "s|$MAIN_URL|$URL|g" ./docusaurus.config.js
         - yarn
         - yarn build
+        - sed -i -e "s|<head>|<head>$(cat deployment/csp.html)|g" ./build/index.html
         - cat deployment/README_GITLAB.md > build/README.md
         - cat deployment/.gitlab.com-ci.yml > build/.gitlab-ci.yml
         - cp -r build/ /
