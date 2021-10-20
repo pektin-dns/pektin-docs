@@ -30,10 +30,12 @@ mirror:
 github-pages:
     stage: github-pages
     script:
-        #github
+        - MAIN_URL=https://pektin.y.gy./
+        - URL=https://pektin-dns.github.io/
         - USERNAME=pektin-dolly
         - git config --global user.email "runner@${CI_SERVER_HOST}"
         - git config --global user.name "runner"
+        - sed -i "s|$MAIN_URL|$URL|g" ./docusaurus.config.js
         - yarn
         - yarn build
         - cat deployment/README_GITHUB.md > build/README.md
@@ -48,10 +50,12 @@ github-pages:
 gitlab-pages:
     stage: gitlab-pages
     script:
-        #github
+        - MAIN_URL=https://pektin.y.gy./
+        - URL=https://pektin-dns.github.io/
         - USERNAME=pektin-dolly
         - git config --global user.email "runner@${CI_SERVER_HOST}"
         - git config --global user.name "runner"
+        - sed -i "s|$MAIN_URL|$URL|g" ./docusaurus.config.js
         - yarn
         - yarn build
         - cat deployment/README_GITLAB.md > build/README.md
