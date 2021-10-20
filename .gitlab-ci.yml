@@ -30,12 +30,13 @@ mirror:
 github-pages:
     stage: github-pages
     script:
-        - MAIN_URL=https://pektin.y.gy./
+        - MAIN_URL=https://pektin.y.gy.
         - URL=https://pektin-dns.github.io/
         - USERNAME=pektin-dolly
         - git config --global user.email "runner@${CI_SERVER_HOST}"
         - git config --global user.name "runner"
-        - sed -i "s|<head>|<head>$(cat deployment/csp.html)|g"
+        - CSP=$(cat deployment/csp.html)
+        - sed -i "s|<head>|<head>$CSP|g"
         - sed -i "s|$MAIN_URL|$URL|g" ./docusaurus.config.js
         - yarn
         - yarn build
@@ -51,7 +52,7 @@ github-pages:
 gitlab-pages:
     stage: gitlab-pages
     script:
-        - MAIN_URL=https://pektin.y.gy./
+        - MAIN_URL=https://pektin.y.gy.
         - URL=https://pektin-dns.github.io/
         - USERNAME=pektin-dolly
         - git config --global user.email "runner@${CI_SERVER_HOST}"
