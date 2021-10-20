@@ -35,11 +35,10 @@ github-pages:
         - USERNAME=pektin-dolly
         - git config --global user.email "runner@${CI_SERVER_HOST}"
         - git config --global user.name "runner"
-        - CSP=$(cat deployment/csp.html)
-        - sed -i "s|<head>|<head>$CSP|g"
         - sed -i "s|$MAIN_URL|$URL|g" ./docusaurus.config.js
         - yarn
         - yarn build
+        - sed -i "s|<head>|<head>$(cat deployment/csp.html)|g" ./build/index.html
         - cat deployment/README_GITHUB.md > build/README.md
         - cp -r build/ /
         - cd /build/
