@@ -63,7 +63,7 @@ gitlab-pages:
         - git init
         - git add -A
         - git commit -m "🐑 build docs"
-        - git remote add origin https://${USERNAME}:${GITLAB_TOKEN}@gitlab.com/docs.git
+        - git remote add origin https://${USERNAME}:${GITLAB_TOKEN}@gitlab.com/pektin/docs.git
         - git push --set-upstream origin HEAD:refs/heads/main -f || true
 
 docker-build:
