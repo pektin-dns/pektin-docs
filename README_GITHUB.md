@@ -1,3 +1,5 @@
 # THIS REPO IS JUST FOR PUBLISHING TO GITHUB PAGES
 
-# THE SOURCE CAN BE FOUND [HERE](https://github.com/pektin-dns/pektin-docs)
+# [DOCS DEPLOYMENT](https://pektin-dns.github.io/docs/)
+
+# [DOCS SOURCE](https://github.com/pektin-dns/pektin-docs)
