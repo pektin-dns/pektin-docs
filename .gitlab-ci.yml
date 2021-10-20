@@ -37,7 +37,7 @@ github-pages:
         - git config --global user.name "runner"
         - yarn
         - yarn build
-        - mkdir /repo
+        - cat README_GITHUB.md > build/README.md
         - cp -r build/ /
         - cd /build/
         - git init
