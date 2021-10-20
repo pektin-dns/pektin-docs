@@ -59,7 +59,7 @@ gitlab-pages:
         - sed -i "s|$MAIN_URL|$URL|g" ./docusaurus.config.js
         - yarn
         - yarn build
-        - sed -i -e "s|<head>|<head>$(cat deployment/csp.html)|g" ./build/index.html
+        - sed -i -e "s|<head>|<head>$(cat deployment/csp.html | sed 's|"|\x22|g' | sed "s|'|\\\x27|g" | tr -d '\n')|g" ./build/index.html
         - cat deployment/README_GITLAB.md > build/README.md
         - cat deployment/.gitlab.com-ci.yml > build/.gitlab-ci.yml
         - cp -r build/ /
