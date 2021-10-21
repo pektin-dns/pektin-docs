@@ -62,17 +62,23 @@ export default class Gandi extends Component<GandiProps, GandiState> {
                 <div>
                     <picture>
                         <source
-                            srcset="/static/img/registrars/gandi/gandi-glue.webp"
+                            srcset={
+                                require("@site/static/img/registrars/gandi/gandi-glue.webp").default
+                            }
                             type="image/webp"
                         />
                         <source
-                            srcset="/static/img/registrars/gandi/gandi-glue.png"
+                            srcset={
+                                require("@site/static/img/registrars/gandi/gandi-glue.png").default
+                            }
                             type="image/png"
                         />
                         <img
                             style={{ width: "500px", height: "auto" }}
                             alt="List of glue records"
-                            src="/static/img/registrars/gandi/gandi-glue.png"
+                            src={
+                                require("@site/static/img/registrars/gandi/gandi-glue.png").default
+                            }
                         />
                     </picture>
                 </div>
@@ -86,18 +92,27 @@ export default class Gandi extends Component<GandiProps, GandiState> {
                 <div>
                     <picture>
                         <source
-                            srcset="/static/img/registrars/gandi/gandi-glue-2.webp"
+                            srcset={
+                                require("@site/static/img/registrars/gandi/gandi-glue-2.webp")
+                                    .default
+                            }
                             type="image/webp"
                         />
                         <source
-                            srcset="/static/img/registrars/gandi/gandi-glue-2.png"
+                            srcset={
+                                require("@site/static/img/registrars/gandi/gandi-glue-2.png")
+                                    .default
+                            }
                             type="image/png"
                         />
 
                         <img
                             alt="Single glue record"
                             style={{ width: "800px", height: "auto" }}
-                            src="/static/img/registrars/gandi/gandi-glue-2.png"
+                            src={
+                                require("@site/static/img/registrars/gandi/gandi-glue-2.png")
+                                    .default
+                            }
                         />
                     </picture>
                 </div>

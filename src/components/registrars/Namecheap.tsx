@@ -47,15 +47,20 @@ export default class Namecheap extends Component<NamecheapProps, NamecheapState>
                 <div>
                     <picture>
                         <source
-                            srcset="/static/img/registrars/namecheap/ns.webp"
+                            srcset={
+                                require("@site/static/img/registrars/namecheap/ns.webp").default
+                            }
                             type="image/webp"
                         />
-                        <source srcset="/static/img/registrars/namecheap/ns.png" type="image/png" />
+                        <source
+                            srcset={require("@site/static/img/registrars/namecheap/ns.png").default}
+                            type="image/png"
+                        />
 
                         <img
                             alt="Single glue record"
                             style={{ width: "800px", height: "auto" }}
-                            src="/static/img/registrars/namecheap/ns.png"
+                            src={require("@site/static/img/registrars/namecheap/ns.png").default}
                         />
                     </picture>
                 </div>
@@ -97,17 +102,26 @@ export default class Namecheap extends Component<NamecheapProps, NamecheapState>
                 <div>
                     <picture>
                         <source
-                            srcset="/static/img/registrars/namecheap/namecheap-glue.webp"
+                            srcset={
+                                require("@site/static/img/registrars/namecheap/namecheap-glue.webp")
+                                    .default
+                            }
                             type="image/webp"
                         />
                         <source
-                            srcset="/static/img/registrars/namecheap/namecheap-glue.png"
+                            srcset={
+                                require("@site/static/img/registrars/namecheap/namecheap-glue.png")
+                                    .default
+                            }
                             type="image/png"
                         />
                         <img
                             style={{ width: "800px", height: "auto" }}
                             alt="List of glue records"
-                            src="/static/img/registrars/namecheap/namecheap-glue.png"
+                            src={
+                                require("@site/static/img/registrars/namecheap/namecheap-glue.png")
+                                    .default
+                            }
                         />
                     </picture>
                 </div>
