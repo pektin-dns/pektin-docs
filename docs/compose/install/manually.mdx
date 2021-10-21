@@ -1,1 +1,114 @@
+import Tabs from "@theme/Tabs";
+
+
 # Manually
+
+## On your main server
+
+### Navigate to a folder where to store the config for your setup in.
+```shell
+cd /opt/
+```
+
+### Clone the compose repo
+
+<Tabs groupId="git-type">
+
+
+<TabItem value="gitlab" label="GitLab" default>
+
+```shell
+git clone https://gitlab.com/pektin/pektin-compose
+```
+
+</TabItem>
+
+<TabItem value="github" label="GitHub">
+
+```shell
+git clone https://github.com/pektin-dns/pektin-compose
+```
+
+</TabItem>
+
+<TabItem value="git.y.gy" label="git.y.gy">
+
+```shell
+git clone https://git.y.gy/pektin/pektin-compose
+```
+
+</TabItem>
+
+</Tabs>
+
+### Edit the pektin-config.json to your liking
+
+**domain** - the main domain to use for all subdomains
+
+**uiSubDomain** - the subdomain to host an instance of the UI on
+
+**apiSubDomain** - the subdomain to contact the API on
+
+**vaultSubDomain** - the subdomain to expose Vault on
+
+**enableUi** - whether or not to create an instance of UI
+
+**enableApi** - whether or not to create an instance of the API
+
+**enableRotate** - whether or not to auto rotate your DNSSEC keys on your registrar regularly
+
+**enableAutoCertificates** - whether or not to auto create wildcard certificates for your domains with letsencrypt
+
+**letsencryptEmail** - email to use with letsencrypt *required if above is set to true*
+
+**autoConfigureMainDomain**
+
+**proxyConfig** - what proxy config to use
+
+**createProxy** - whether or not to create the proxy itself
+
+**buildFromSource** - build all (Pektin) containers from source (Repos are pulled from GitHub)
+
+**dev** - dev mode 
+
+**insecureDevIp** - ip to use if dev mode is set to "insecureOnline"
+
+
+```json
+{
+    "domain": "example.com",
+    "uiSubDomain": "ui.pektin",
+    "apiSubDomain": "api.pektin",
+    "vaultSubDomain": "vault.pektin",
+
+    "enableUi": true,
+    "enableApi": true,
+
+    "enableRotate": true,
+    "enableAutoCertificates": true,
+    "letsencryptEmail": "letsencrypt@example.com",
+
+    "autoConfigureMainDomain": true,
+
+    "proxyConfig": "none",
+    "createProxy": false,
+
+    "buildFromSource": false,
+    "dev": "local",
+    "insecureDevIp": "1.1.1.1"
+}
+
+```
+
+### Run the install script
+This will setup the config for Vault, Redis etc., create secrets and scripts to administrate the compose setup
+
+```shell
+bash install.sh
+```
+
+### Run the server
+
+```shell
+bash start.sh
+```

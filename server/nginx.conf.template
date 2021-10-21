@@ -8,7 +8,7 @@ add_header Content-Security-Policy "default-src 'none'; script-src 'self'; style
 
 add_header Strict-Transport-Security "max-age=315360000; includeSubdomains; preload";
 add_header referrer-policy no-referrer;
-add_header feature-policy "camera 'none';microphone 'none';payment 'none';usb 'none';geolocation 'none'";
+add_header permissions-policy "camera 'none';microphone 'none';payment 'none';usb 'none';geolocation 'none'";
 
 server {
 

@@ -1,1 +1,32 @@
 # Pektin
+
+## What is Pektin?
+Pektin is a highly opinionated authoritative DNS server with an API, user interface and much more.
+
+## Why use Pektin?
+- No zone files
+- Ultra fast
+- API controllable
+- Highly secure
+- Easy to use UI with many powerful features
+- Support for DOT, DOH, DOQ and of course plain DNS
+- DNSSEC
+- Easy certificate generation
+- Scalable
+- Privacy first
+- Easy deployment with Docker Compose, Ansible and Helm
+
+## What is opinionated?
+These things are opinionated although many of them can be expanded on or adjusted manually if needed.
+We chose these things to make it easier to provide the features that we needed/wanted.
+
+- No support for every last DNS type (Supported are: AAAA, A, SOA, NS, MX, SRV, PTR, TXT, TLSA, OPENPGPKEY)
+- Replication between multiple authoritative servers is done via Redis not via DNS
+- No recursion
+- DNSSEC only with method 13 (ECDSA-P256-SHA256)
+- DNSSEC is standard 
+- DNSSEC signing is offloaded to Vault
+- Primary focus is deployment to container environments (Docker, Kubernetes etc.)
+- Redis as data store
+- Uses Traefik as proxy
+
