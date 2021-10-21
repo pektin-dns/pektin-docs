@@ -205,7 +205,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
                             ]
                         },
                         {
-                            title: "Images",
+                            title: "Container Images",
                             items: [
                                 {
                                     href: "https://hub.docker.com/repositories",
