@@ -1,11 +1,11 @@
 import Tabs from "@theme/Tabs";
 
-
 # Manually
 
 ## On your main server
 
 ### Navigate to a folder where to store the config for your setup in.
+
 ```shell
 cd /opt/
 ```
@@ -13,7 +13,6 @@ cd /opt/
 ### Clone the compose repo
 
 <Tabs groupId="git-type">
-
 
 <TabItem value="gitlab" label="GitLab" default>
 
@@ -59,7 +58,7 @@ git clone https://git.y.gy/pektin/pektin-compose
 
 **enableAutoCertificates** - whether or not to auto create wildcard certificates for your domains with letsencrypt
 
-**letsencryptEmail** - email to use with letsencrypt *required if above is set to true*
+**letsencryptEmail** - email to use with letsencrypt _required if above is set to true_
 
 **autoConfigureMainDomain**
 
@@ -69,10 +68,9 @@ git clone https://git.y.gy/pektin/pektin-compose
 
 **buildFromSource** - build all (Pektin) containers from source (Repos are pulled from GitHub)
 
-**dev** - dev mode 
+**dev** - dev mode
 
 **insecureDevIp** - ip to use if dev mode is set to "insecureOnline"
-
 
 ```json
 {
@@ -95,12 +93,12 @@ git clone https://git.y.gy/pektin/pektin-compose
 
     "buildFromSource": false,
     "dev": "local",
-    "insecureDevIp": "1.1.1.1"
+    "insecureDevIp": "127.0.0.1"
 }
-
 ```
 
 ### Run the install script
+
 This will setup the config for Vault, Redis etc., create secrets and scripts to administrate the compose setup
 
 ```shell

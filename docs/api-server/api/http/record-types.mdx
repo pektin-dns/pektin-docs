@@ -1,0 +1,208 @@
+# Record Types
+
+# Simple Records
+
+## AAAA
+
+```json
+{
+    "name": "pektin.xyz.:AAAA",
+    "rr_set": [
+        {
+            "ttl": 3600,
+            "value": {
+                "AAAA": "1::1"
+            }
+        }
+    ]
+}
+```
+
+## A
+
+```json
+{
+    "name": "pektin.xyz.:A",
+    "rr_set": [
+        {
+            "ttl": 3600,
+            "value": {
+                "A": "127.0.0.1"
+            }
+        }
+    ]
+}
+```
+
+## NS
+
+```json
+{
+    "name": "pektin.xyz.:NS",
+    "rr_set": [
+        {
+            "ttl": 3600,
+            "value": {
+                "NS": "ns1.pektin.xyz."
+            }
+        }
+    ]
+}
+```
+
+## CNAME
+
+```json
+{
+    "name": "pektin.xyz.:CNAME",
+    "rr_set": [
+        {
+            "ttl": 3600,
+            "value": {
+                "CNAME": "pektin.xyz."
+            }
+        }
+    ]
+}
+```
+
+## TXT
+
+```json
+{
+    "name": "pektin.xyz.:TXT",
+    "rr_set": [
+        {
+            "ttl": 3600,
+            "value": {
+                "TXT": "this is some text"
+            }
+        }
+    ]
+}
+```
+
+## OPENPGPKEY
+
+```json
+{
+    "name": "pektin.xyz.:OPENPGPKEY",
+    "rr_set": [
+        {
+            "ttl": 3600,
+            "value": {
+                "OPENPGPKEY": "some openpgp public key"
+            }
+        }
+    ]
+}
+```
+
+# Complex Records
+
+Called complex because they have extra fields instead of one string.
+
+## MX
+
+```json
+{
+    "name": "pektin.xyz.:MX",
+    "rr_set": [
+        {
+            "ttl": 3600,
+            "value": {
+                "MX": {
+                    "preference": 10,
+                    "exchange": "mx.pektin.xyz."
+                }
+            }
+        }
+    ]
+}
+```
+
+## SRV
+
+```json
+{
+    "name": "pektin.xyz.:SRV",
+    "rr_set": [
+        {
+            "ttl": 3600,
+            "value": {
+                "SRV": {
+                    "priority": 1,
+                    "weight": 1,
+                    "port": 443,
+                    "target": "mx.pektin.xyz."
+                }
+            }
+        }
+    ]
+}
+```
+
+## CAA
+
+```json
+{
+    "name": "pektin.xyz.:CAA",
+    "rr_set": [
+        {
+            "ttl": 3600,
+            "value": {
+                "CAA": {
+                    "issuer_critical": false,
+                    "tag": "issue",
+                    "value": "letsencrypt.org"
+                }
+            }
+        }
+    ]
+}
+```
+
+## TLSA
+
+```json
+{
+    "name": "pektin.xyz.:TLSA",
+    "rr_set": [
+        {
+            "ttl": 3600,
+            "value": {
+                "TLSA": {
+                    "usage": 3,
+                    "selector": 1,
+                    "matching_type": 1,
+                    "data": "50c1ab1e11feb0a75..."
+                }
+            }
+        }
+    ]
+}
+```
+
+## SOA
+
+```json
+{
+    "name": "pektin.xyz.:SOA",
+    "rr_set": [
+        {
+            "ttl": 3600,
+            "value": {
+                "SOA": {
+                    "mname": "ns1.pektin.xyz.",
+                    "rname": "hostmaster.pektin.xyz.",
+                    "refresh": 0,
+                    "retry": 0,
+                    "serial": 0,
+                    "expire": 0,
+                    "minimum": 0
+                }
+            }
+        }
+    ]
+}
+```
