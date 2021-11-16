@@ -1,4 +1,4 @@
-image: node:latest
+image: node:16.13.0
 
 stages:
     - mirror
@@ -78,4 +78,3 @@ docker-build:
     script:
         - docker build --pull -t "pektin/docs" .
         - docker push "pektin/docs"
-
