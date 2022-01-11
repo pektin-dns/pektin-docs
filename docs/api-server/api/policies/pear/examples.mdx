@@ -1,0 +1,67 @@
+---
+sidebar_position: 20
+---
+
+# Examples
+
+## Server Admin Policy
+
+allows **any** interaction with the API
+
+```js
+package pear_policy
+
+default domain = true
+default api_methods = true
+default rr_types = true
+default value = true
+default ip = true
+default utc_millis = true
+```
+
+## Domain Admin Policy
+
+allows any interaction with the API regarding the domains `pektin.xyz.` and `pektin.club.`
+
+```js
+package pektin_policy
+
+default domain = false
+default api_methods = true
+default rr_types = true
+default value = true
+default ip = true
+default utc_millis = true
+
+domain {
+    domainName:=input.domain
+    endswith(domainName,["pektin.xyz.","pektin.club."][i])
+}
+```
+
+## ACME Client Policy
+
+allows interaction with the API for **TXT** records of **any** domain starting with `_acme-challenge.` and ending in a `.` for the API methods set, get and delete
+
+```js
+package pektin_policy
+import future.keywords.in
+
+default domain = false
+default apiMethods = false
+default rrTypes = false
+default valuePatterns = false
+
+domain {
+    startswith(input.domain,"_acme-challenge.")
+    endswith(input.domain,".")
+}
+
+apiMethods {
+    input.apiMethods in ["set","get","delete"]
+}
+
+rrTypes {
+    input.rrTypes in ["TXT"]
+}
+```

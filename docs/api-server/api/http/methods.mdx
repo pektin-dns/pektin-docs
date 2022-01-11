@@ -7,11 +7,12 @@ import TabItem from "@theme/TabItem";
 
 # Methods
 
+:::note
 **All** methods are using POST requests to keep the HTTP shenanigans to a minimum. <br/>
 This is to cause less confusion and errors.<br/>
-Everything is transmitted through the body in JSON. No paths, queries or custom headers.<br/>
+Everything is transmitted through the body in JSON. No path parameters, queries or custom headers.<br/>
 The content type **must** be set to "application/json".<br/>
-
+:::
 _The Key/Keys word refers to the name/keyword of an entry in Redis in this context._
 
 ## /get
@@ -57,7 +58,7 @@ console.log(res);
 
 Performs a validity check on the provided record and then sets it in Redis.
 
-### Look [here](./record-types) for the Record Types
+#### Look [here](./record-types) for the Record Types
 
 <Tabs groupId="code-type">
 
@@ -234,3 +235,7 @@ console.log(res);
 </Tabs>
 
 ## /get-zone-records
+
+## /sys/health
+
+## /util/eval-pear-policy

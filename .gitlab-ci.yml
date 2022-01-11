@@ -1,40 +1,30 @@
-image: node:16.13.0
+include:
+    - project: pektin/pektin-dist
+      ref: main
+      file:
+          - scripts/mirror.yml
+          - scripts/docker-build-and-publish.yml
+
+image: alpine
+
+variables:
+    IMAGE_NAME: docs
 
 stages:
     - mirror
     - gitlab-pages
     - github-pages
-    - docker-build
-
-mirror:
-    stage: mirror
-    script:
-        #github
-        - USERNAME=pektin-dolly
-        - git config --global user.email "runner@${CI_SERVER_HOST}"
-        - git config --global user.name "runner"
-        - git fetch --unshallow origin || true
-        - git remote remove origin
-        - git remote add origin https://${USERNAME}:${GITHUB_TOKEN}@github.com/pektin-dns/${CI_PROJECT_NAME}.git
-        - echo " " >> .gitlab-ci.yml
-        - git add -A
-        - git commit -m "🐑 mirror [skip ci]"
-        - curl -u "${USERNAME}:${GITHUB_TOKEN}" https://api.github.com/user/repos -d "{\"name\":\"${CI_PROJECT_NAME}\"}"
-        - curl --request PATCH -u "${USERNAME}:${GITHUB_TOKEN}" https://api.github.com/repos/pektin-dns/${CI_PROJECT_NAME} -d "{\"description\":\"This is a mirror of ${CI_PROJECT_URL}\"}"
-        - git push --set-upstream origin HEAD:refs/heads/main -f || true
-        #gitlab
-        - git remote remove origin
-        - git remote add origin https://${USERNAME}:${GITLAB_TOKEN}@gitlab.com/${CI_PROJECT_PATH}.git
-        - git push --set-upstream origin HEAD:refs/heads/main -f
+    - docker-build-and-publish
 
 github-pages:
     stage: github-pages
+    image: node
     script:
         - MAIN_URL=https://pektin.y.gy.
         - URL=https://pektin-dns.github.io/
         - USERNAME=pektin-dolly
-        - git config --global user.email "runner@${CI_SERVER_HOST}"
-        - git config --global user.name "runner"
+        - git config --global user.email "pektin-dolly@y.gy"
+        - git config --global user.name "pektin-dolly"
         - sed -i "s|$MAIN_URL|$URL|g" ./docusaurus.config.js
         - yarn
         - yarn build
@@ -50,12 +40,13 @@ github-pages:
 
 gitlab-pages:
     stage: gitlab-pages
+    image: node
     script:
         - MAIN_URL=https://pektin.y.gy.
         - URL=https://pektin-dns.github.io/
         - USERNAME=pektin-dolly
-        - git config --global user.email "runner@${CI_SERVER_HOST}"
-        - git config --global user.name "runner"
+        - git config --global user.email "pektin-dolly@y.gy"
+        - git config --global user.name "pektin-dolly"
         - sed -i "s|$MAIN_URL|$URL|g" ./docusaurus.config.js
         - yarn
         - yarn build
@@ -69,12 +60,3 @@ gitlab-pages:
         - git commit -m "🐑 build docs"
         - git remote add origin https://${USERNAME}:${GITLAB_TOKEN}@gitlab.com/pektin/docs.git
         - git push --set-upstream origin HEAD:refs/heads/main -f || true
-
-docker-build:
-    stage: docker-build
-    image: docker:latest
-    before_script:
-        - docker login -u "pektin" -p "$CI_REGISTRY_PASSWORD"
-    script:
-        - docker build --pull -t "pektin/docs" .
-        - docker push "pektin/docs"
