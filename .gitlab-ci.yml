@@ -18,7 +18,7 @@ stages:
 
 github-pages:
     stage: github-pages
-    image: node
+    image: node:16.13.0
     script:
         - MAIN_URL=https://pektin.y.gy.
         - URL=https://pektin-dns.github.io/
@@ -40,7 +40,7 @@ github-pages:
 
 gitlab-pages:
     stage: gitlab-pages
-    image: node
+    image: node:16.13.0
     script:
         - MAIN_URL=https://pektin.y.gy.
         - URL=https://pektin-dns.github.io/
