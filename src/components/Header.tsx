@@ -4,7 +4,7 @@ const links = [
     { urlPrefix: "https://git.y.gy/pektin/pektin-", text: "git.y.gy", icon: "" },
     { urlPrefix: "https://gitlab.com/pektin/pektin-", text: "GitLab", icon: "" },
     { urlPrefix: "https://github.com/pektin-dns/pektin-", text: "GitHub", icon: "" },
-    { urlPrefix: "https://hub.docker.com/repository/docker/pektin/", text: "Docker Hub", icon: "" }
+    { urlPrefix: "https://hub.docker.com/r/pektin/", text: "Docker Hub", icon: "" }
 ];
 
 interface HeaderProps {
@@ -12,7 +12,7 @@ interface HeaderProps {
 }
 interface HeaderState {}
 
-export class Header extends React.Component<HeaderProps, HeaderState> {
+export class Header extends Component<HeaderProps, HeaderState> {
     render = () => {
         return (
             <div>
