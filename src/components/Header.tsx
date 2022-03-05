@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from "react";
 
 const links = [
-    { urlPrefix: "https://git.y.gy/pektin/pektin-", text: "git.y.gy", icon: "" },
-    { urlPrefix: "https://gitlab.com/pektin/pektin-", text: "GitLab", icon: "" },
-    { urlPrefix: "https://github.com/pektin-dns/pektin-", text: "GitHub", icon: "" },
-    { urlPrefix: "https://hub.docker.com/r/pektin/", text: "Docker Hub", icon: "" }
+    { id: "gitlab", urlPrefix: "https://git.y.gy/pektin/", text: "git.y.gy", icon: "" },
+    { id: "gitlabcom", urlPrefix: "https://gitlab.com/pektin/", text: "GitLab", icon: "" },
+    { id: "github", urlPrefix: "https://github.com/pektin-dns/", text: "GitHub", icon: "" },
+    { id: "dockerhub", urlPrefix: "https://hub.docker.com/r/pektin/", text: "Docker Hub", icon: "" }
 ];
 
 interface HeaderProps {
@@ -14,10 +14,13 @@ interface HeaderState {}
 
 export class Header extends Component<HeaderProps, HeaderState> {
     render = () => {
+        const selectedLinks = links.filter(
+            link => !(this.props.useDocker === false && link.id === "dockerhub")
+        );
         return (
-            <div>
-                {links.map((link, i: number) => {
-                    return (
+            <div className="headerLinkBar">
+                {selectedLinks.flatMap((link, i: number) => {
+                    return [
                         <Fragment>
                             <a
                                 key={link.text}
@@ -26,9 +29,9 @@ export class Header extends Component<HeaderProps, HeaderState> {
                             >
                                 {link.text}
                             </a>
-                            {i !== links.length - 1 ? " | " : ""}
+                            {i !== selectedLinks.length - 1 ? " | " : ""}
                         </Fragment>
-                    );
+                    ];
                 })}
             </div>
         );

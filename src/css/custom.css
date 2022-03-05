@@ -32,8 +32,22 @@ a[href="#disabled"] {
     pointer-events: none;
 }
 
+main {
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 5px !important;
+}
+
+.headerLinkBar {
+    padding-left: 5px;
+}
 @media (max-width: 700px) {
     a[href="#disabled"] {
         writing-mode: vertical-lr;
+    }
+    main {
+        padding: 0px;
     }
 }

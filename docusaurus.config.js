@@ -83,9 +83,9 @@ const darkCodeTheme = require("prism-react-renderer/themes/oceanicNext");
             [
                 "@docusaurus/plugin-content-docs",
                 {
-                    id: "rotate",
-                    path: "docs/rotate",
-                    routeBasePath: "rotate",
+                    id: "ribston",
+                    path: "docs/ribston",
+                    routeBasePath: "ribston",
                     sidebarPath: require.resolve("./sidebars.js")
                 }
             ],
@@ -155,9 +155,9 @@ const darkCodeTheme = require("prism-react-renderer/themes/oceanicNext");
                             label: "Certbot"
                         },
                         {
-                            to: "rotate/overview",
+                            to: "ribston/overview",
                             position: "left",
-                            label: "Rotate"
+                            label: "Ribston"
                         },
                         {
                             to: "vault/overview",
@@ -214,7 +214,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/oceanicNext");
                             ]
                         }
                     ],
-                    copyright: `Copyright ${new Date().getFullYear()} Paul, Max and the Pektin Contributors. Built with Docusaurus.`
+                    copyright: `Copyright ${new Date().getFullYear()} Paul, Max and the Pektin Contributors.`
                 },
                 prism: {
                     theme: lightCodeTheme,
