@@ -42,58 +42,136 @@ git clone https://git.y.gy/pektin/pektin-compose
 
 ### Edit the pektin-config.json to your liking
 
-**domain** - the main domain to use for all subdomains
-
-**uiSubDomain** - the subdomain to host an instance of the UI on
-
-**apiSubDomain** - the subdomain to contact the API on
-
-**vaultSubDomain** - the subdomain to expose Vault on
-
-**enableUi** - whether or not to create an instance of UI
-
-**enableApi** - whether or not to create an instance of the API
-
-**enableRotate** - whether or not to auto rotate your DNSSEC keys on your registrar regularly
-
-**enableAutoCertificates** - whether or not to auto create wildcard certificates for your domains with letsencrypt
-
-**letsencryptEmail** - email to use with letsencrypt _required if above is set to true_
-
-**autoConfigureMainDomain**
-
-**proxyConfig** - what proxy config to use
-
-**createProxy** - whether or not to create the proxy itself
-
-**buildFromSource** - build all (Pektin) containers from source (Repos are pulled from GitHub)
-
-**dev** - dev mode
-
-**insecureDevIp** - ip to use if dev mode is set to "insecureOnline"
+If you are using vscode you should get intellisense for that.
+The JSON schema can be found [here](https://git.y.gy/pektin/pektin-config/-/raw/main/pektin-config.schema.json)
+The config has to contain (nearly) all keys and values.
 
 ```json
 {
-    "domain": "example.com",
-    "uiSubDomain": "ui.pektin",
-    "apiSubDomain": "api.pektin",
-    "vaultSubDomain": "vault.pektin",
-
-    "enableUi": true,
-    "enableApi": true,
-
-    "enableRotate": true,
-    "enableAutoCertificates": true,
-    "letsencryptEmail": "letsencrypt@example.com",
-
-    "autoConfigureMainDomain": true,
-
-    "proxyConfig": "none",
-    "createProxy": false,
-
-    "buildFromSource": false,
-    "dev": "local",
-    "insecureDevIp": "127.0.0.1"
+    "services": {
+        "server": {
+            "enabled": true,
+            "logging": "main,pektin_server",
+            "build": {
+                "enabled": false,
+                "path": "/home/paul/Documents/pektin/pektin-server",
+                "dockerfile": "Dockerfile"
+            }
+        },
+        "ui": {
+            "enabled": true,
+            "domain": "pektin.club",
+            "subDomain": "ui",
+            "build": {
+                "enabled": false,
+                "path": "/home/paul/Documents/pektin/pektin-ui",
+                "dockerfile": "Dockerfile"
+            }
+        },
+        "api": {
+            "domain": "pektin.club",
+            "subDomain": "api",
+            "logging": "main,pektin_api",
+            "perimeterAuth": false,
+            "build": {
+                "enabled": true,
+                "path": "/home/paul/Documents/pektin/pektin-api",
+                "dockerfile": "dev.Dockerfile"
+            }
+        },
+        "vault": {
+            "domain": "pektin.club",
+            "subDomain": "vault",
+            "perimeterAuth": false,
+            "build": {
+                "enabled": false,
+                "path": "",
+                "dockerfile": "Dockerfile"
+            }
+        },
+        "recursor": {
+            "enabled": true,
+            "domain": "pektin.club",
+            "subDomain": "recursor",
+            "build": {
+                "enabled": false,
+                "path": "",
+                "dockerfile": "Dockerfile"
+            }
+        },
+        "ribston": {
+            "enabled": true,
+            "build": {
+                "enabled": false,
+                "path": "/home/paul/Documents/pektin/pektin-ribston",
+                "dockerfile": "Dockerfile"
+            }
+        },
+        "opa": {
+            "enabled": false,
+            "build": {
+                "enabled": false,
+                "path": "",
+                "dockerfile": "Dockerfile"
+            }
+        }
+    },
+    "nodes": [
+        {
+            "main": true,
+            "name": "balduin",
+            "ips": ["2a01:4f9:c01f:80::"]
+        },
+        {
+            "name": "gustav",
+            "ips": ["2a01:4f9:c01f:80::"],
+            "setup": {
+                "system": "ubuntu",
+                "root": {
+                    "disableSystemdResolved": true,
+                    "installDocker": true
+                },
+                "cloneRepo": true,
+                "setup": true,
+                "start": true
+            }
+        }
+    ],
+    "nameservers": [
+        { "subDomain": "ns1", "domain": "pektin.club", "node": "balduin", "main": true },
+        { "subDomain": "ns2", "domain": "pektin.club", "node": "gustav" }
+    ],
+    "letsencrypt": {
+        "enabled": true,
+        "letsencryptEmail": "test@pektin.club"
+    },
+    "usePolicies": "ribston",
+    "reverseProxy": {
+        "createTraefik": true,
+        "routing": "local",
+        "tls": false,
+        "tempZone": { "enabled": true, "provider": "pektin.zone", "routing": "local" },
+        "traefikUi": { "enabled": true, "domain": "pektin.club", "subDomain": "traefik" },
+        "external": {
+            "domain": "pektin.club",
+            "subDomain": "pektin-proxy",
+            "enabled": true,
+            "services": [
+                {
+                    "name": "gandi",
+                    "enabled": true,
+                    "domain": "api.gandi.net",
+                    "accessControlAllowMethods": ["OPTIONS", "POST", "GET", "DELETE"]
+                },
+                {
+                    "name": "crt",
+                    "enabled": true,
+                    "domain": "crt.sh",
+                    "accessControlAllowMethods": ["OPTIONS", "GET"]
+                }
+            ]
+        }
+    }
 }
 ```
 
