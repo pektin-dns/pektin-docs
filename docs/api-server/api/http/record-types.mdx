@@ -6,13 +6,12 @@
 
 ```json
 {
-    "name": "pektin.xyz.:AAAA",
+    "name": "pektin.xyz.",
+    "rr_type": "AAAA",
+    "ttl": 3600,
     "rr_set": [
         {
-            "ttl": 3600,
-            "value": {
-                "AAAA": "1::1"
-            }
+            "value": "1::1"
         }
     ]
 }
@@ -22,13 +21,12 @@
 
 ```json
 {
-    "name": "pektin.xyz.:A",
+    "name": "pektin.xyz.",
+    "rr_type": "AAAA",
+    "ttl": 3600,
     "rr_set": [
         {
-            "ttl": 3600,
-            "value": {
-                "A": "127.0.0.1"
-            }
+            "value": "127.0.0.1"
         }
     ]
 }
@@ -38,13 +36,12 @@
 
 ```json
 {
-    "name": "pektin.xyz.:NS",
+    "name": "pektin.xyz.",
+    "rr_type": "NS",
+    "ttl": 3600,
     "rr_set": [
         {
-            "ttl": 3600,
-            "value": {
-                "NS": "ns1.pektin.xyz."
-            }
+            "value": "ns1.pektin.xyz."
         }
     ]
 }
@@ -54,13 +51,12 @@
 
 ```json
 {
-    "name": "pektin.xyz.:CNAME",
+    "name": "pektin.xyz.",
+    "rr_type": "CNAME",
+    "ttl": 3600,
     "rr_set": [
         {
-            "ttl": 3600,
-            "value": {
-                "CNAME": "pektin.xyz."
-            }
+            "value": "CNAME": "pektin.xyz."
         }
     ]
 }
@@ -70,13 +66,12 @@
 
 ```json
 {
-    "name": "pektin.xyz.:TXT",
+    "name": "pektin.xyz.",
+    "rr_type": "TXT",
+    "ttl": 3600,
     "rr_set": [
         {
-            "ttl": 3600,
-            "value": {
-                "TXT": "this is some text"
-            }
+            "value": "this is some text"
         }
     ]
 }
@@ -86,13 +81,12 @@
 
 ```json
 {
-    "name": "pektin.xyz.:OPENPGPKEY",
+    "name": "pektin.xyz.",
+    "rr_type": "OPENPGPKEY",
+    "ttl": 3600,
     "rr_set": [
         {
-            "ttl": 3600,
-            "value": {
-                "OPENPGPKEY": "some openpgp public key"
-            }
+            "value": "some openpgp public key"
         }
     ]
 }
@@ -106,16 +100,13 @@ Called complex because they have extra fields instead of one string.
 
 ```json
 {
-    "name": "pektin.xyz.:MX",
+    "name": "pektin.xyz.",
+    "rr_type": "MX",
+    "ttl": 3600,
     "rr_set": [
         {
-            "ttl": 3600,
-            "value": {
-                "MX": {
-                    "preference": 10,
-                    "exchange": "mx.pektin.xyz."
-                }
-            }
+            "preference": 10,
+            "exchange": "mx.pektin.xyz."
         }
     ]
 }
@@ -125,18 +116,15 @@ Called complex because they have extra fields instead of one string.
 
 ```json
 {
-    "name": "pektin.xyz.:SRV",
+    "name": "pektin.xyz.",
+    "rr_type": "SRV",
+    "ttl": 3600,
     "rr_set": [
         {
-            "ttl": 3600,
-            "value": {
-                "SRV": {
-                    "priority": 1,
-                    "weight": 1,
-                    "port": 443,
-                    "target": "mx.pektin.xyz."
-                }
-            }
+            "priority": 1,
+            "weight": 1,
+            "port": 443,
+            "target": "mx.pektin.xyz."
         }
     ]
 }
@@ -146,17 +134,14 @@ Called complex because they have extra fields instead of one string.
 
 ```json
 {
-    "name": "pektin.xyz.:CAA",
+    "name": "pektin.xyz.",
+    "rr_type": "CAA",
+    "ttl": 3600,
     "rr_set": [
         {
-            "ttl": 3600,
-            "value": {
-                "CAA": {
-                    "issuer_critical": false,
-                    "tag": "issue",
-                    "value": "letsencrypt.org"
-                }
-            }
+            "issuer_critical": false,
+            "tag": "issue",
+            "value": "letsencrypt.org"
         }
     ]
 }
@@ -166,18 +151,15 @@ Called complex because they have extra fields instead of one string.
 
 ```json
 {
-    "name": "pektin.xyz.:TLSA",
+    "name": "pektin.xyz.",
+    "rr_type": "TLSA",
+    "ttl": 3600,
     "rr_set": [
         {
-            "ttl": 3600,
-            "value": {
-                "TLSA": {
-                    "usage": 3,
-                    "selector": 1,
-                    "matching_type": 1,
-                    "data": "50c1ab1e11feb0a75..."
-                }
-            }
+            "usage": 3,
+            "selector": 1,
+            "matching_type": 1,
+            "data": "50c1ab1e11feb0a75..."
         }
     ]
 }
@@ -188,20 +170,17 @@ Called complex because they have extra fields instead of one string.
 ```json
 {
     "name": "pektin.xyz.:SOA",
+    "rr_type": "SOA",
+    "ttl": 3600,
     "rr_set": [
         {
-            "ttl": 3600,
-            "value": {
-                "SOA": {
-                    "mname": "ns1.pektin.xyz.",
-                    "rname": "hostmaster.pektin.xyz.",
-                    "refresh": 0,
-                    "retry": 0,
-                    "serial": 0,
-                    "expire": 0,
-                    "minimum": 0
-                }
-            }
+            "mname": "ns1.pektin.xyz.",
+            "rname": "hostmaster.pektin.xyz.",
+            "refresh": 0,
+            "retry": 0,
+            "serial": 0,
+            "expire": 0,
+            "minimum": 0
         }
     ]
 }

@@ -84,9 +84,9 @@ Performs a validity check on the provided record and then sets it in Redis.
         {
             "name": "pektin.club.",
             "rr_type": "SOA",
+            "ttl": 3600,
             "rr_set": [
                 {
-                    "ttl": 3600,
                     "mname": "ns1.example.com.",
                     "rname": "hostmaster.example.com.",
                     "refresh": 0,
@@ -100,9 +100,9 @@ Performs a validity check on the provided record and then sets it in Redis.
         {
             "name": "pektin.club.",
             "rr_type": "AAAA",
+            "ttl": 3600,
             "rr_set": [
                 {
-                    "ttl": 3600,
                     "value": "1::1"
                 }
             ]
@@ -128,9 +128,9 @@ const res = await fetch(endpoint + "/set", {
             {
                 name: "pektin.club.",
                 rr_type: "SOA",
+                ttl: 3600,
                 rr_set: [
                     {
-                        ttl: 3600,
                         mname: "ns1.example.com.",
                         rname: "hostmaster.example.com.",
                         refresh: 0,
@@ -144,9 +144,9 @@ const res = await fetch(endpoint + "/set", {
             {
                 name: "pektin.club.",
                 rr_type: "AAAA",
+                ttl: 3600,
                 rr_set: [
                     {
-                        ttl: 3600,
                         value: "1::1"
                     }
                 ]
