@@ -12,7 +12,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/oceanicNext");
         baseUrlIssueBanner: false,
         onBrokenLinks: "throw",
         onBrokenMarkdownLinks: "warn",
-        favicon: "img/docusaurus.png",
+        favicon: "img/logo.svg",
         organizationName: "Pektin",
         projectName: "Pektin",
         trailingSlash: false,
