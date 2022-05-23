@@ -22,6 +22,13 @@ Pektin is a highly opinionated authoritative DNS server with an API, user interf
 -   Privacy first 👁️‍🗨️
 -   Easy deployment with Docker Compose, Ansible and Helm 🐳🅰️☸️
 -   Easy use with [mailcow](https://github.com/mailcow/mailcow-dockerized) 📬🐮🐳 (Self host all the things!)
+-   Small image sizes 💾
+
+## When NOT to use Pektin
+
+-   It's not recommended to use Pektin outside of the provided Docker Compose and/or Helm repos.
+-   Pektin is not a recursive resolver
+-   Pektin is not intended to be used with other DNS software like PowerDNS or BIND9
 
 ## What is opinionated?
 
@@ -29,13 +36,13 @@ These things are opinionated although many of them can be expanded on or adjuste
 We chose these things to make it easier to provide the features that we needed/wanted.
 
 -   No support for every last DNS type (Supported are: AAAA, A, SOA, NS, CAA, CNAME, MX, SRV, TXT, TLSA, OPENPGPKEY) You sure can request an addition to the list of supported types.
--   Replication between multiple authoritative servers is done via Redis not via DNS
+-   Replication between multiple authoritative servers is done via Keydb not via DNS
 -   This is NOT a recursive DNS server
 -   DNSSEC only with method 13 (ECDSA-P256-SHA256)
 -   DNSSEC is enabled by default
 -   DNSSEC signing is offloaded to Vault
 -   Primary focus is deployment to container environments (Docker, Kubernetes etc.)
--   Redis as data store
+-   Keydb as data store
 -   Uses Traefik as proxy
 
 ## Why host your own DNS server?
@@ -46,32 +53,42 @@ We chose these things to make it easier to provide the features that we needed/w
 -   Easy certificate generation
 -   Coolness 😎
 
+## How do I get started?
+
+### [Docker Compose](/docs/compose/overview)
+
+### [Kubernetes - Helm](/docs/helm/overview)
+
 ## Architecture
 
-Ohh no so many containers! This must be huge!<br />
+![Diagram of the Pektin Architecture](/img/pektin.drawio.svg)
+
+Ohh no so many containers! This must be huge and complicated!<br />
 **It is not.**
+
+A core focus was to make it as easy to host your own DNS server as using [mailcow](https://github.com/mailcow/mailcow-dockerized) (A project we love for it's simplicity and ease of use)
 
 **Image sizes:**<br />
 API - 3MB<br />
-Server - 1MB<br />
-UI - 1.5MB<br />
+Server - 2MB<br />
+UI - 2MB<br />
 Ribston - 41MB<br />
 Vault - 69MB<br />
-Redis - 11MB
+Keydb - 10MB
 
 ### Server
 
 A DNS-Server providing plain DNS, DNS over HTTP and DNS over TLS
 
-This container is **not** able to sign, nor to do any other authoritative work. **It just delivers records** from [Redis](https://redis.io/) to the clients.
+This container is **not** able to sign, nor to do any other authoritative work. **It just delivers records** from [Keydb](https://keydb.io/) to the clients.
 
-### [Redis](https://redis.io/)
+### [Keydb](https://keydb.io/)
 
 Used as fast replicated datastore to keep and distribute the DNS records from the API to the servers.
 
 ### API
 
-Creates the DNS records that are set in [Redis](https://redis.io/) formated in JSON.
+Creates the DNS records that are set in [Keydb](https://github.com/Snapchat/KeyDB) formated in JSON.
 
 It can't sign records by itself. The signing is offloaded to [Vault](https://www.vaultproject.io/) which provides signing as a service keeping your DNS keys as secure as possible.
 
@@ -88,9 +105,9 @@ Standalone web-UI without any dynamic backend to have easy control over the mult
 A React app served by our own simple high performance static web server [feoco](https://github.com/pektin-dns/feoco) (**609KB**).
 We dropped nginx because of its less than optimal configuration possibilities.
 
-### Recursor
+### Trinitrotoluol (TNT)
 
-Recursor is just an addition for UI to perform DOH queries and not meant for publicly serving DNS records.
+TNT is just an addition for UI to perform DOH queries and not meant for publicly serving DNS records.
 
 ### Ribston/OPA (Policy Agent)
 
@@ -110,7 +127,7 @@ We liked the concept of programmable policies though, so we created our own poli
 
 The policies are written in TypeScript/JavaScript and are evaluated using the Deno JavaScript runtime spawning workers and/or subprocesses to evaluate the given policies.
 
-This enables you to write your own policies without a degree in Rego (OPAs policy language) and to use all established devtools for JS.
+This enables you to write your own policies without a degree in Rego (OPAs policy language) and to use all established devtools for JS/TS.
 
 The evaluation is nearly as fast as using OPA but the IPC overhead is slowing it down a lot.
 Evaluation takes about 0.1ms but IPC overhead is about 4-8ms.

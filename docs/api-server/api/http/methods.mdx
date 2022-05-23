@@ -13,11 +13,11 @@ This is to cause less confusion and errors.<br/>
 Everything is transmitted through the body in JSON. No path parameters, queries or custom headers.<br/>
 The content type **must** be set to "application/json".<br/>
 :::
-_The Key/Keys word refers to the name/keyword of an entry in Redis in this context._
+_The Key/Keys word refers to the name/keyword of an entry in Keydb in this context._
 
 ## /get
 
-Performs a lookup for a value in Redis using the exact key.<br/>
+Performs a lookup for a value in Keydb using the exact key.<br/>
 The keys must be provided in an array.
 
 <Tabs groupId="code-type">
@@ -68,7 +68,7 @@ console.log(res);
 
 ## /set
 
-Performs a validity check on the provided record and then sets it in Redis.
+Performs a validity check on the provided record and then sets it in Keydb.
 
 #### Look [here](./record-types) for the Record Types
 
@@ -215,7 +215,7 @@ console.log(res);
 
 ## /search
 
-Performs a Redis search using the KEYS command. <br/>
+Performs a Keydb search using the KEYS command. <br/>
 This does **NOT** support regex instead using a [glob pattern search](<https://en.wikipedia.org/wiki/Glob_(programming)>).
 
 <Tabs groupId="code-type">

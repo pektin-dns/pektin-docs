@@ -101,9 +101,9 @@ const darkCodeTheme = require("prism-react-renderer/themes/oceanicNext");
             [
                 "@docusaurus/plugin-content-docs",
                 {
-                    id: "redis",
-                    path: "docs/redis",
-                    routeBasePath: "redis",
+                    id: "keydb",
+                    path: "docs/keydb",
+                    routeBasePath: "keydb",
                     sidebarPath: require.resolve("./sidebars.js")
                 }
             ]
@@ -165,9 +165,9 @@ const darkCodeTheme = require("prism-react-renderer/themes/oceanicNext");
                             label: "Vault"
                         },
                         {
-                            to: "redis/overview",
+                            to: "keydb/overview",
                             position: "left",
-                            label: "Redis"
+                            label: "Keydb"
                         }
                     ]
                 },
