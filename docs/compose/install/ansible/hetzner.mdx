@@ -80,7 +80,8 @@ keyed_groups:
 5. Copy the token and paste it into the `pektin-compose-ansible/playbooks/hcloud.yml` file
 
 6. Adjust the `pektin-config.json`
-   6.1 Give a name to your public key under `ansible.sshPubKeyName`
+
+    6.1 Give a name to your public key under `ansible.sshPubKeyName`
 
 7. Edit the `setup.sh` file and replace the value/path of `YOUR_SSH_PUB_KEY=/home/paul/.ssh/blackbox.pub` with the path to your public key. This will add your public key to all the machines Pektin is getting installed on so that you can ssh into them later.
 
